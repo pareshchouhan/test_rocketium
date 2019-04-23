@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RF SDK</title>
+	<style>
+		#test {
+			position: absolute;
+			top: 20%;
+			left: 20%;
+		}
+	</style>
+</head>
+<body>
+	<div id="test"></div>
+	<script>
+		(function () {
+			// add a queue event here
+			window.rfsdk = window.rfsdk || function () {
+				(window.rfsdk.q = window.rfsdk.q || []).push(arguments);
+			};
+			var s = document.createElement('script');
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = 'rfsdk.min.js';
+			var x = document.getElementsByTagName('script')[0];
+			x.parentNode.insertBefore(s, x);
+		})();
+
+		// execute your script immediately here
+		window.rfsdk('init', {
+			workspaceId: '5c5279dc39e424400819c423',
+			templateId: '5c6d28e90783db785ca7532b',
+			clientId: "5cb54eeba16ad33021684d66",
+			appendTo: 'test',
+			// hideLayout: false,
+			// hidePreview: false,
+			// hideHeader: true,
+			// hideOnCanvas: true,
+			// hideLeftPreviewBar: true,
+			// previewTopMainOptionHide: true,
+			// hideLogo: false,
+			// hideMusic: false,
+			// hideTiming: false,
+			// hideAspectRatio: true,
+			// hideExportSetting: true,
+			// hideMediaUpload: true,
+			// hideMediaUrl: true,
+			// hideMediaLibrary: true,
+			previewType: 'full'
+		});
+
+		// setTimeout(function() {
+		// 	window.rfsdk('hide');
+		// 	setTimeout(function() {
+		// 		window.rfsdk('show');
+		// 	}, 5000);
+		// }, 5000);
+		window.rfsdk('on', 'rfsdk-video-generating', function() {
+			console.log('Video-generating');
+		});
+		window.rfsdk('on', 'rfsdk-video-generated', function(data) {
+			console.log('Video-generated', data);
+		});
+		window.rfsdk('on', 'rfsdk-editor-loading', function() {
+			// alert('video editor loading');
+		});
+		window.rfsdk('on', 'rfsdk-editor-ready', function() {
+			// alert('video editor ready');
+		});
+
+	</script>
+	<!-- <script type="text/javascript" src="rfsdk.min.js"></script></body> --!>
+
+<script>
+  console.log(window.rfsdk);
+</script>
+</html>
