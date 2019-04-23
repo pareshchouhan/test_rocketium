@@ -35,9 +35,6 @@
 		hideMediaUrl: true,
 		hideMediaLibrary: true,
 		previewType: 'full',
-		'Reload SDK': function() {
-			window.rfsdk('init', config);
-		}
 	};
 	window.onload = function() {
 		var gui = new dat.GUI();
@@ -60,13 +57,16 @@
 		gui.add(config, 'hideMediaUpload');
 		gui.add(config, 'hideMediaUrl');
 		gui.add(config, 'hideMediaLibrary');
-		gui.add(config, 'Reload SDK');
 	}
 
 </script>
 <body>
+	<button id="reload-sdk" style="width: 100px; height: 100px;">Reload SDK</button>
 	<div id="test"></div>
 	<script>
+		$('#reload-sdk').click(function() {
+			window.rfsdk('init', config);
+		});
 		(function () {
 			// add a queue event here
 			window.rfsdk = window.rfsdk || function () {
