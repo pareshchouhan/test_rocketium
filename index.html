@@ -11,6 +11,59 @@
 		}
 	</style>
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.js"></script>
+<script type="text/javascript">
+
+	var config = {
+		templateId: "5c6d28e90783db785ca7532b",
+		workspaceId: "5c5279dc39e424400819c423",
+		clientId: "5cb54eeba16ad33021684d66",
+		hideLayout: false,
+		hidePreview: false,
+		hideHeader: true,
+		hideOnCanvas: true,
+		hideLeftPreviewBar: true,
+		previewTopMainOptionHide: true,
+		hideLogo: false,
+		hideMusic: false,
+		hideTiming: false,
+		hideAspectRatio: true,
+		hideExportSetting: true,
+		hideMediaUpload: true,
+		hideMediaUrl: true,
+		hideMediaLibrary: true,
+		previewType: 'full',
+		'Reload SDK': function() {
+			window.rfsdk('init', config);
+		}
+	};
+	window.onload = function() {
+		var gui = new dat.GUI();
+		gui.remember(config);
+		gui.add(config, 'templateId');
+		gui.add(config, 'workspaceId');
+		gui.add(config, 'clientId');
+		gui.add(config, 'previewType', { 'All Features': 'full', 'Basic Features': 'basic', 'Bare Minimum': 'off' });
+		gui.add(config, 'hideLayout');
+		gui.add(config, 'hidePreview');
+		gui.add(config, 'hideHeader');
+		gui.add(config, 'hideOnCanvas');
+		gui.add(config, 'hideLeftPreviewBar');
+		gui.add(config, 'previewTopMainOptionHide');
+		gui.add(config, 'hideLogo');
+		gui.add(config, 'hideMusic');
+		gui.add(config, 'hideTiming');
+		gui.add(config, 'hideAspectRatio');
+		gui.add(config, 'hideExportSetting');
+		gui.add(config, 'hideMediaUpload');
+		gui.add(config, 'hideMediaUrl');
+		gui.add(config, 'hideMediaLibrary');
+		gui.add(config, 'Reload SDK');
+	}
+
+</script>
 <body>
 	<div id="test"></div>
 	<script>
@@ -30,7 +83,7 @@
 		// execute your script immediately here
 		window.rfsdk('init', {
 			workspaceId: '5c5279dc39e424400819c423',
-			templateId: '5c6d28e90783db785ca7532b',
+			templateId: $('#template-id').val() || '5c6d28e90783db785ca7532b',
 			clientId: "5cb54eeba16ad33021684d66",
 			appendTo: 'test',
 			// hideLayout: false,
