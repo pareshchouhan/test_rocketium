@@ -75,27 +75,7 @@ var config = {
 		})();
 
 		// execute your script immediately here
-		window.rfsdk('init', {
-			workspaceId: '5c5279dc39e424400819c423',
-			templateId: $('#template-id').val() || '5c6d28e90783db785ca7532b',
-			clientId: "5cb54eeba16ad33021684d66",
-			appendTo: 'test',
-			// hideLayout: false,
-			// hidePreview: false,
-			// hideHeader: true,
-			// hideOnCanvas: true,
-			// hideLeftPreviewBar: true,
-			// previewTopMainOptionHide: true,
-			// hideLogo: false,
-			// hideMusic: false,
-			// hideTiming: false,
-			// hideAspectRatio: true,
-			// hideExportSetting: true,
-			// hideMediaUpload: true,
-			// hideMediaUrl: true,
-			// hideMediaLibrary: true,
-			previewType: 'full'
-		});
+		window.rfsdk('init', config);
 
 		// setTimeout(function() {
 		// 	window.rfsdk('hide');
