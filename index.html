@@ -28,7 +28,8 @@ var config = {
 			'previewType': 'full',
 			'editor-type': 'lightbox',
 			'button-text': 'Make video with Rocketium',
-			'button-image': 'https://rocketium.com/img/logo400x400.png'
+			'button-image': 'https://rocketium.com/img/logo400x400.png',
+			'button-color': '#007eff'
 		};
 		window.onload = function() {
 			var gui = new dat.GUI();
@@ -45,6 +46,7 @@ var config = {
 			controllers.push(gui.add(config, 'editor-type', {'Inline Editor': 'inline', 'Popup Editor': 'lightbox' }));
 			controllers.push(gui.add(config, 'button-text'));
 			controllers.push(gui.add(config, 'button-image'));
+			controllers.push(gui.add(config, 'button-color'));
 			var reInit = () => {
 				window.rfsdk('init', config);
 			};
