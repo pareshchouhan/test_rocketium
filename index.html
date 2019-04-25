@@ -41,7 +41,7 @@
 		controllers.push(gui.add(config, 'media-upload'));
 		controllers.push(gui.add(config, 'editor-type', {'Inline Editor': 'inline', 'Popup Editor': 'lightbox' }));
 		var reInit = () => {
-			window.rfsdk('init');
+			window.rfsdk('init', config);
 		};
 		for (let controller of controllers) {
 			controller.onFinishChange(reInit);
