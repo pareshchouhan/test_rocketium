@@ -39,7 +39,7 @@
 		controllers.push(gui.add(config, 'media-library'));
 		controllers.push(gui.add(config, 'media-upload'));
 		var reInit = () => {
-			window.rfsdk.init();
+			window.rfsdk('init');
 		};
 		for (let controller of controllers) {
 			controller.onFinishChange(reInit);
@@ -48,7 +48,7 @@
 
 </script>
 <body>
-	<button id="reload-sdk" style="width: 100px; height: 100px;">Reload SDK</button>
+	<!-- <button id="reload-sdk" style="width: 100px; height: 100px;">Reload SDK</button> -->
 	<div id="test"></div>
 	<script>
 		$('#reload-sdk').click(function() {
