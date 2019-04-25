@@ -20,43 +20,30 @@
 		templateId: "5c6d28e90783db785ca7532b",
 		workspaceId: "5c5279dc39e424400819c423",
 		clientId: "5cb54eeba16ad33021684d66",
-		hideLayout: false,
-		hidePreview: false,
-		hideHeader: true,
-		hideOnCanvas: true,
-		hideLeftPreviewBar: true,
-		previewTopMainOptionHide: true,
-		hideLogo: false,
-		hideMusic: false,
-		hideTiming: false,
-		hideAspectRatio: true,
-		hideExportSetting: true,
-		hideMediaUpload: true,
-		hideMediaUrl: true,
-		hideMediaLibrary: true,
-		previewType: 'full',
+		'preview': true,
+		'layout': true,
+		'media-library': false,
+		'media-upload': false,
+		'previewType': 'full'
 	};
 	window.onload = function() {
 		var gui = new dat.GUI();
+		var controllers = [];
 		gui.remember(config);
-		gui.add(config, 'templateId');
-		gui.add(config, 'workspaceId');
-		gui.add(config, 'clientId');
-		gui.add(config, 'previewType', { 'All Features': 'full', 'Basic Features': 'basic', 'Bare Minimum': 'off' });
-		gui.add(config, 'hideLayout');
-		gui.add(config, 'hidePreview');
-		gui.add(config, 'hideHeader');
-		gui.add(config, 'hideOnCanvas');
-		gui.add(config, 'hideLeftPreviewBar');
-		gui.add(config, 'previewTopMainOptionHide');
-		gui.add(config, 'hideLogo');
-		gui.add(config, 'hideMusic');
-		gui.add(config, 'hideTiming');
-		gui.add(config, 'hideAspectRatio');
-		gui.add(config, 'hideExportSetting');
-		gui.add(config, 'hideMediaUpload');
-		gui.add(config, 'hideMediaUrl');
-		gui.add(config, 'hideMediaLibrary');
+		controllers.push(gui.add(config, 'templateId'));
+		controllers.push(gui.add(config, 'workspaceId'));
+		controllers.push(gui.add(config, 'clientId'));
+		controllers.push(gui.add(config, 'previewType', { 'All Features': 'full', 'Basic Features': 'basic', 'Bare Minimum': 'off' }));
+		controllers.push(gui.add(config, 'preview'));
+		controllers.push(gui.add(config, 'layout'));
+		controllers.push(gui.add(config, 'media-library'));
+		controllers.push(gui.add(config, 'media-upload'));
+		var reInit = () => {
+			window.rfsdk.init();
+		};
+		for (let controller of controllers) {
+			controller.onFinishChange(reInit);
+		}
 	}
 
 </script>
