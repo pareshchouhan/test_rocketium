@@ -46,7 +46,7 @@ var config = {
 			controllers.push(gui.add(config, 'editor-type', {'Inline Editor': 'inline', 'Popup Editor': 'lightbox' }));
 			controllers.push(gui.add(config, 'button-text'));
 			controllers.push(gui.add(config, 'button-image'));
-			controllers.push(gui.add(config, 'button-color'));
+			controllers.push(gui.addColor(config, 'button-color'));
 			var reInit = () => {
 				window.rfsdk('init', config);
 			};
