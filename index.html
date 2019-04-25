@@ -24,7 +24,8 @@
 		'layout': true,
 		'media-library': false,
 		'media-upload': false,
-		'previewType': 'full'
+		'previewType': 'full',
+		'editor-type': 'inline'
 	};
 	window.onload = function() {
 		var gui = new dat.GUI();
@@ -38,6 +39,7 @@
 		controllers.push(gui.add(config, 'layout'));
 		controllers.push(gui.add(config, 'media-library'));
 		controllers.push(gui.add(config, 'media-upload'));
+		controllers.push(gui.add(config, 'editor-type', {'Inline Editor': 'inline', 'Popup Editor': 'lightbox' }));
 		var reInit = () => {
 			window.rfsdk('init');
 		};
