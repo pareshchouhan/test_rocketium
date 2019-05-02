@@ -26,10 +26,12 @@ var config = {
 			'media-library': false,
 			'media-upload': false,
 			'previewType': 'full',
-			'editor-type': 'lightbox',
+			'editor-type': 'popup',
 			'button-text': 'Make video with Rocketium',
 			'button-image': 'https://rocketium.com/img/logo400x400.png',
-			'button-color': '#007eff'
+			'button-color': '#007eff',
+			'export-type': 'generate',
+			'video-name': 'Form 2 Video'
 		};
 		window.onload = function() {
 			var gui = new dat.GUI();
@@ -43,12 +45,35 @@ var config = {
 			controllers.push(gui.add(config, 'layout'));
 			controllers.push(gui.add(config, 'media-library'));
 			controllers.push(gui.add(config, 'media-upload'));
-			controllers.push(gui.add(config, 'editor-type', {'Inline Editor': 'inline', 'Popup Editor': 'lightbox' }));
+			controllers.push(gui.add(config, 'editor-type', {'Inline Editor': 'inline', 'Popup Editor': 'popup' }));
 			controllers.push(gui.add(config, 'button-text'));
 			controllers.push(gui.add(config, 'button-image'));
 			controllers.push(gui.addColor(config, 'button-color'));
+			controllers.push(gui.add(config, 'export-type', {'Generate': 'generate', 'Save as Draft': 'draft' }));
+			controllers.push(gui.add(config, 'video-name'));
 			var reInit = () => {
 				window.rfsdk('init', config);
+				window.rfsdk('on', 'rfsdk-video-generating', function() {
+					console.log('Video-generating');
+				});
+				window.rfsdk('on', 'rfsdk-video-generated', function(data) {
+					console.log('Video-generated', data);
+				});
+				window.rfsdk('on', 'rfsdk-editor-loading', function() {
+					// alert('video editor loading');
+				});
+				window.rfsdk('on', 'rfsdk-editor-ready', function() {
+					// alert('video editor ready');
+				});
+				window.rfsdk('on', 'rfsdk-video-draft-saving', function() {
+					// alert('video editor loading');
+				});
+				window.rfsdk('on', 'rfsdk-video-draft-saved', function() {
+					// alert('video editor ready');
+				});
+				window.rfsdk('on', 'error', function(errorData) {
+					console.log('RFSDK Error', errorData);
+				});
 			};
 			for (let controller of controllers) {
 				controller.onFinishChange(reInit);
@@ -96,6 +121,15 @@ var config = {
 		});
 		window.rfsdk('on', 'rfsdk-editor-ready', function() {
 			// alert('video editor ready');
+		});
+		window.rfsdk('on', 'rfsdk-video-draft-saving', function() {
+			// alert('video editor loading');
+		});
+		window.rfsdk('on', 'rfsdk-video-draft-saved', function() {
+			// alert('video editor ready');
+		});
+		window.rfsdk('on', 'error', function(errorData) {
+			console.log('RFSDK Error', errorData);
 		});
 
 	</script>
