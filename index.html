@@ -52,7 +52,7 @@ var config = {
 			controllers.push(gui.add(config, 'export-type', {'Generate': 'generate', 'Save as Draft': 'draft' }));
 			controllers.push(gui.add(config, 'video-name'));
 			var reInit = () => {
-				window.rfsdk('init', config);
+				window.rfsdk('destroy');
 				window.rfsdk('on', 'rfsdk-video-generating', function() {
 					console.log('Video-generating');
 				});
@@ -74,6 +74,8 @@ var config = {
 				window.rfsdk('on', 'error', function(errorData) {
 					console.log('RFSDK Error', errorData);
 				});
+				window.rfsdk('init', config);
+
 			};
 			for (let controller of controllers) {
 				controller.onFinishChange(reInit);
@@ -101,15 +103,6 @@ var config = {
 			x.parentNode.insertBefore(s, x);
 		})();
 
-		// execute your script immediately here
-		window.rfsdk('init', config);
-
-		// setTimeout(function() {
-		// 	window.rfsdk('hide');
-		// 	setTimeout(function() {
-		// 		window.rfsdk('show');
-		// 	}, 5000);
-		// }, 5000);
 		window.rfsdk('on', 'rfsdk-video-generating', function() {
 			console.log('Video-generating');
 		});
@@ -131,6 +124,17 @@ var config = {
 		window.rfsdk('on', 'error', function(errorData) {
 			console.log('RFSDK Error', errorData);
 		});
+
+		// execute your script immediately here
+		window.rfsdk('init', config);
+
+		// setTimeout(function() {
+		// 	window.rfsdk('hide');
+		// 	setTimeout(function() {
+		// 		window.rfsdk('show');
+		// 	}, 5000);
+		// }, 5000);
+
 
 	</script>
 	<!-- <script type="text/javascript" src="rfsdk.min.js"></script></body> --!>
