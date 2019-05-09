@@ -21,17 +21,17 @@ var config = {
 			templateId: '5c6d28e90783db785ca7532b',
 			clientId: "5cc02d5b94ed370ce43ea669",
 			appendTo: 'test',
-			'preview': true,
 			'layout': true,
 			'media-library': false,
 			'media-upload': false,
-			'previewType': 'full',
+			'preview': 'full',
 			'editor-type': 'popup',
 			'button-text': 'Make video with Rocketium',
 			'button-image': 'https://rocketium.com/img/logo400x400.png',
 			'button-color': '#007eff',
 			'export-type': 'generate',
-			'video-name': 'Form 2 Video'
+			'video-name': 'Form 2 Video',
+			'button-hidden': false
 		};
 		window.onload = function() {
 			var gui = new dat.GUI();
@@ -40,8 +40,7 @@ var config = {
 			controllers.push(gui.add(config, 'templateId'));
 			controllers.push(gui.add(config, 'workspaceId'));
 			controllers.push(gui.add(config, 'clientId'));
-			controllers.push(gui.add(config, 'previewType', { 'All Features': 'full', 'Basic Features': 'basic', 'Bare Minimum': 'off' }));
-			controllers.push(gui.add(config, 'preview'));
+			controllers.push(gui.add(config, 'preview', { 'All Features': 'full', 'Basic Features': 'basic', 'Bare Minimum': 'off' }));
 			controllers.push(gui.add(config, 'layout'));
 			controllers.push(gui.add(config, 'media-library'));
 			controllers.push(gui.add(config, 'media-upload'));
@@ -49,6 +48,7 @@ var config = {
 			controllers.push(gui.add(config, 'button-text'));
 			controllers.push(gui.add(config, 'button-image'));
 			controllers.push(gui.addColor(config, 'button-color'));
+			controllers.push(gui.add(config, 'button-hidden'));
 			controllers.push(gui.add(config, 'export-type', {'Generate': 'generate', 'Save as Draft': 'draft' }));
 			controllers.push(gui.add(config, 'video-name'));
 			var reInit = () => {
@@ -103,10 +103,10 @@ var config = {
 			x.parentNode.insertBefore(s, x);
 		})();
 
-		window.rfsdk('on', 'rfsdk-video-generating', function() {
-			console.log('Video-generating');
-		});
-		window.rfsdk('on', 'rfsdk-video-generated', function(data) {
+		// window.rfsdk('on', 'rfsdk-video-exporting', function(data) {
+		// 	console.log('Video-generating', data);
+		// });
+		window.rfsdk('on', 'rfsdk-video-exported', function(data) {
 			console.log('Video-generated', data);
 		});
 		window.rfsdk('on', 'rfsdk-editor-loading', function() {
