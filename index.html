@@ -62,7 +62,8 @@ var config = {
 				window.rfsdk('on', 'rfsdk-editor-loading', function() {
 					// alert('video editor loading');
 				});
-				window.rfsdk('on', 'rfsdk-editor-ready', function() {
+				window.rfsdk('on', 'rfsdk-editor-ready', function(data) {
+					console.log('Editor -ready', data);
 					// alert('video editor ready');
 				});
 				window.rfsdk('on', 'rfsdk-video-draft-saving', function() {
@@ -112,7 +113,9 @@ var config = {
 		window.rfsdk('on', 'rfsdk-editor-loading', function() {
 			// alert('video editor loading');
 		});
-		window.rfsdk('on', 'rfsdk-editor-ready', function() {
+		window.rfsdk('on', 'rfsdk-editor-ready', function(data) {
+			console.log('Editor -ready', data);
+
 			// alert('video editor ready');
 		});
 		window.rfsdk('on', 'rfsdk-video-draft-saving', function() {
