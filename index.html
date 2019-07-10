@@ -52,7 +52,7 @@ var config = {
 			controllers.push(gui.add(config, 'export-type', {'Generate': 'generate', 'Save as Draft': 'draft' }));
 			controllers.push(gui.add(config, 'video-name'));
 			var reInit = () => {
-				window.rfsdk('destroy');
+				//window.rfsdk('destroy');
 				window.rfsdk('on', 'rfsdk-video-generating', function() {
 					console.log('Video-generating');
 				});
@@ -75,7 +75,7 @@ var config = {
 				window.rfsdk('on', 'error', function(errorData) {
 					console.log('RFSDK Error', errorData);
 				});
-				window.rfsdk('init', config);
+				window.rfsdk('updateConfig', config);
 
 			};
 			for (let controller of controllers) {
